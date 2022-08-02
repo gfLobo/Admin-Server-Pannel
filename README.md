@@ -12,14 +12,14 @@ Initialize the server:
 
 <div>
 
-    cd server  npm install  npm run dev
+    cd server;  npm install;  npm run dev
 
 </div>
 
 Running the client side:
 <div>
 
-    npm install  npm run dev
+    npm install;  npm run dev
 
 </div>
 

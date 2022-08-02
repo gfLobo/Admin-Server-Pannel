@@ -15,10 +15,13 @@
     "@mui/material": "^5.9.2",
     "@mui/x-data-grid": "^5.14.0",
     "axios": "^0.27.2",
+    "markdown-to-jsx": "^7.1.7",
     "react": "^18.2.0",
     "react-animated-cursor": "^2.5.1",
+    "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^18.2.0",
     "react-image-follow": "^1.2.2",
+    "react-markdown": "^8.0.3",
     "react-rain-animation": "^1.0.4",
     "react-rainfall-animation": "^1.0.0",
     "react-router-dom": "^6.3.0",
@@ -26,8 +29,10 @@
   },
   "devDependencies": {
     "@types/react": "^18.0.15",
+    "@types/react-copy-to-clipboard": "^5.0.4",
     "@types/react-dom": "^18.0.6",
     "@vitejs/plugin-react": "^2.0.0",
+    "raw.macro": "^0.6.2",
     "typescript": "^4.6.4",
     "vite": "^3.0.0"
   }

@@ -72,10 +72,12 @@ export default function Navigator(props: DrawerProps) {
         </ListItem>
         <Link to={'/'} style={{ color: 'inherit', textDecoration: 'inherit' }} >
           <ListItem sx={{ ...item, ...itemCategory }}>
-            <ListItemIcon>
-              <HomeIcon />
-            </ListItemIcon>
-            <ListItemText>Project Overview</ListItemText>
+            <ListItemButton selected={location == '/'}>
+              <ListItemIcon>
+                <HomeIcon />
+              </ListItemIcon>
+              <ListItemText>Project Overview</ListItemText>
+            </ListItemButton>
           </ListItem>
         </Link>
         {categories.map(({ id, children }) => (
