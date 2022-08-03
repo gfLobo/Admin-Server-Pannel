@@ -319,9 +319,17 @@ export default function Index() {
                             <Divider style={{ height: 20 }} />
                             <Box style={{ backgroundColor: '#cfe8fc' }}>
                                 <h3 style={{ padding: 20 }}> POST </h3>
+                                <p>
+                               
+                                </p>
                             </Box>
+                            
                             <blockquote>
-
+                            {'{'}setter:"", 
+                                Name: "",
+                                Region:"",
+                                Phone:"",
+                                Role:""{'}'}
                                 <div id="clip5"><a style={{ textDecoration: 'none' }}><BootstrapButton variant="contained" disableRipple onClick={() => myFunction(document.getElementById("clip7"))} startIcon={<ContentCopyIcon />}>  http://localhost:3001/NCustomer</BootstrapButton ></a></div>
 
                             </blockquote>

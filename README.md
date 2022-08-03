@@ -59,6 +59,20 @@ Running the client side:
 ### POST
 <div>
 
+<div>
+
+>Request Body
+
+    {
+        setter:"",
+        Name: "",
+        Region:"",
+        Phone:"",
+        Role:""
+    }
+
+</div>
+
     http://localhost:3001/NCustomer
 
 </div>
