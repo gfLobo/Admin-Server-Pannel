@@ -69,9 +69,9 @@ app.post("/NCustomer", (req, res) => {
             } else {
                 db.exec(`
                 INSERT INTO Customers (CustomerID, ContactName, Region, Phone, ContactTitle)
-                VALUES("${Name.trim().substring(0, 5).toUpperCase()}","${Name}", "${Region}", "${Phone}", "${Role}")
+                VALUES("${setter}","${Name}", "${Region}", "${Phone}", "${Role}")
                 `, (err2, row2) => {
-                    db.all(` SELECT * FROM Customers WHERE CustomerID=="${Name.trim().substring(0, 5).toUpperCase()}" `, (err3, row3) => {
+                    db.all(` SELECT * FROM Customers WHERE CustomerID=="${setter}" `, (err3, row3) => {
                         res.send(row3)
                     })
                 })
@@ -101,8 +101,9 @@ app.get('/Reset', (req, res) => {
         fs.readFile('reset.txt', 'utf8', function (err, data) {
             if (err) throw err;
             
-            db.exec(`${data}`);
-            res.send("DONE!");
+            db.exec(`${data}`)
+            res.send("DONE!")
+            
         });
     })
 })

@@ -27,17 +27,20 @@ export default function Navigator(props: DrawerProps) {
         {
           id: 'Customers',
           icon: <PeopleIcon />,
-          active: location == '/customers'
+          active: location == '/customers',
+          route:'/customers'
         },
         {
           id: 'Employees',
           icon: <DnsRoundedIcon />,
-          active: location == '/employees'
+          active: location == '/employees',
+          route:'/employees'
         },
         {
           id: 'Products',
           icon: <PermMediaOutlinedIcon />,
-          active: location == '/products'
+          active: location == '/products',
+          route:'/products'
         },
       ],
     }
@@ -85,8 +88,8 @@ export default function Navigator(props: DrawerProps) {
             <ListItem sx={{ py: 2, px: 3 }}>
               <ListItemText sx={{ color: '#fff' }}>{id}</ListItemText>
             </ListItem>
-            {children.map(({ id: childId, icon, active }) => (
-              <Link to={`/${childId}`.toLowerCase()}>
+            {children.map(({ id: childId, icon, active, route }) => (
+              <Link to={`${route}`}>
                 <ListItem disablePadding key={childId}>
                   <ListItemButton selected={active} sx={item}>
                     <ListItemIcon>{icon}</ListItemIcon>

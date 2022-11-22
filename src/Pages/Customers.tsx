@@ -8,22 +8,18 @@ import Link from '@mui/material/Link';
 import Navigator from '../components/Navigator';
 import ContentCustomer from '../components/Contents/ContentCustomer';
 import Header from '../components/Header';
-import { Alert, Backdrop, Button, ButtonGroup, CircularProgress, Divider, Grid, InputLabel, MenuItem, Select, Snackbar, TextField } from '@mui/material';
+import { Alert, Backdrop, Button, ButtonGroup, CircularProgress, Divider, Grid, InputLabel, MenuItem, Select, Skeleton, Snackbar, TextField } from '@mui/material';
 import axios from 'axios';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
+import Copyright from '../components/Copyright';
 
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}.
-    </Typography>
-  );
-}
+
+
+
+
+
+
 
 let theme = createTheme({
   palette: {
@@ -183,22 +179,20 @@ export default function Customers() {
   const [phone, setPhone] = React.useState('');
   const [region, setRegion] = React.useState('');
   const [state, setState]: any = React.useState('info')
-
-
+  const [getCustomers, setCustomers] = React.useState<Array<any>>([])
   const [alert, setAlert] = React.useState('Loading...')
+  const [open, setOpen] = React.useState(false);
+  const [resToring, setresToring] = React.useState(false);
+
 
 
   const handleChangeRegion = (event: any) => {
     setRegion(event.target.value);
   };
 
-  var xhttpRegions = new XMLHttpRequest();
-  xhttpRegions.open("GET", "http://localhost:3001/regions", false);
-  xhttpRegions.send();
-  var jsonRegions = JSON.parse(xhttpRegions.responseText);
 
 
-  const [open, setOpen] = React.useState(false);
+
 
   const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {
@@ -239,7 +233,7 @@ export default function Customers() {
       setAlert("ERROR. ID Required.");
       setState("error");
     } else {
-      axios.delete(`http://localhost:3001/DCustomer/${id}`).then(() => {
+      axios.delete(`http://localhost:3001/DCustomer/${id}`).then(data => {
         setOpen(true);
         setAlert("Deleted successfully!");
         setState("success");
@@ -250,12 +244,26 @@ export default function Customers() {
 
 
   const handRestart = () => {
-    setOpen(true);
+    
+    setresToring(true);
     axios.get("http://localhost:3001/Reset").then(() => {
       setOpen(false);
+      setresToring(false);
+
+    }).catch(() => {
+      setAlert("Error trying to restore data")
+      setState("error");
     })
   }
 
+  React.useEffect(() => {
+    var xhttpRegions = new XMLHttpRequest();
+    xhttpRegions.open("GET", "http://localhost:3001/regions", false);
+    xhttpRegions.send();
+    var jsonRegions = JSON.parse(xhttpRegions.responseText);
+
+    setCustomers([...getCustomers, jsonRegions])
+  }, [open])
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{ display: 'flex', minHeight: '100vh' }}>
@@ -330,7 +338,7 @@ export default function Customers() {
                   style={{ width: 200 }}
                   label="Region"
                 >
-                  {jsonRegions.map((val: any, idx: any) => {
+                  {getCustomers.map((val: any, idx: any) => {
                     return (
                       <MenuItem value={val.Region}>{val.Region}</MenuItem>
                     )
@@ -346,7 +354,11 @@ export default function Customers() {
               </Grid>
 
             </Grid>
-            <ContentCustomer />
+
+            {resToring ? <Skeleton animation="wave" width={"100%"} height={500} />
+              : <ContentCustomer />
+            }
+
             <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
               <Alert onClose={handleClose} color={state} variant="filled">
                 ID = {id}

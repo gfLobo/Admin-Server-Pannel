@@ -8,18 +8,9 @@ import Link from '@mui/material/Link';
 import Navigator from '../components/Navigator';
 import ContentProducts from '../components/Contents/ContentProducts';
 import Header from '../components/Header';
+import Copyright from '../components/Copyright';
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}.
-    </Typography>
-  );
-}
+
 
 let theme = createTheme({
   palette: {

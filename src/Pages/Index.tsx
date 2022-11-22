@@ -9,6 +9,7 @@ import Header from '../components/Header';
 import { Button, Container, Divider, Paper, Stack } from '@mui/material';
 import React from 'react';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import Copyright from '../components/Copyright';
 
 function myFunction(clip: any) {
     console.log(clip.innerText)
@@ -54,17 +55,7 @@ const BootstrapButton = styled(Button)({
 });
 
 
-function Copyright() {
-    return (
-        <Typography variant="body2" color="text.secondary" align="center">
-            {'Copyright © '}
-            <Link color="inherit" href="https://mui.com/">
-                Your Website
-            </Link>{' '}
-            {new Date().getFullYear()}.
-        </Typography>
-    );
-}
+
 
 let theme = createTheme({
     palette: {
